@@ -3,9 +3,9 @@
 ************************** */
 function displayMine() {
     console.log("displayMine Function Called")
-    const accessToken = localStorage.getItem('sessionToken');
+    const accessToken = localStorage.getItem('SessionToken');
 
-    fetch(`http:://localhost:3000/journal/mine`, {
+    fetch(`http://localhost:3000/journal/mine`, {
         method: "GET",
         headers: new Headers({
             "Content-Type": "application/json",
@@ -72,7 +72,7 @@ function displayMine() {
             deleteBtn.setAttribute('type','button');
             deleteBtn.setAttribute('onclick',`deleteJournal(${current.id})`);
         }
-    }
+    } 
 })
     .catch(err => {
         console.error(err)

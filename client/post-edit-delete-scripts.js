@@ -3,7 +3,7 @@
 ************************** */
 function postJournal() {
     console.log('postJournal Function Called')
-    const accessToken = localStorage.getItem('sessionToken')
+    const accessToken = localStorage.getItem('SessionToken')
     let title = document.getElementById('title').value;
     let date = document.getElementById('date').value;
     let entry = document.getElementById('entry').value;
@@ -20,7 +20,7 @@ function postJournal() {
         method: "POST",
         headers: new Headers ({
             "Content-Type": "application/json",
-            "Authorization": `Bearer {accessToken}`
+            "Authorization": `Bearer ${accessToken}`
         }),
         body: JSON.stringify(newEntry)
     })
