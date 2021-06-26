@@ -16,7 +16,7 @@ function userSignUp() {
 
     console.log(`newUserData --> ${newUserData.user.email} ${newUserData.user.password}`);
 
-    fetch(`http://localhost:3000/user/register`, {
+    fetch(`http://localhost:3010/user/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -27,11 +27,11 @@ function userSignUp() {
         .then(data => {
             console.log(data);
             let token = data.sessionToken;
-            localStorage.setItem('sessionToken', token);
+            localStorage.setItem('SessionToken', token);
             tokenChecker();
         })
         .catch(err => {
-            console.error(err)
+            console.error(err.message)
         })
     };
     /* *************************
@@ -52,7 +52,7 @@ function userSignUp() {
     }
     console.log(userData)
 
-    fetch(`http://localhost:3000/user/login`, {
+    fetch(`http://localhost:3010/user/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -63,11 +63,11 @@ function userSignUp() {
         .then(data => {
             console.log(data)
             let token = data.sessionToken;
-            localStorage.setItem('sessionToken', token);
+            localStorage.setItem('SessionToken', token);
             tokenChecker();
         })
         .catch(err => {
-            console.error(err)
+            console.error(err.message)
         })
     }
     
@@ -76,7 +76,7 @@ function userSignUp() {
     ************************** */
     function userLogout() {
         console.log('userLogout Function Called')
-        localStorage.setItem('sessionToken', undefined);
+        localStorage.setItem('SessionToken', undefined);
         console.log(`sessionToken --> ${localStorage.sessionToken}`);
         tokenChecker();
     }

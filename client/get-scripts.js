@@ -85,6 +85,64 @@ function displayMine() {
     ************************** */
     function displayAll() {
      console.log('displayAll Function Called')
+    
+    fetch(`http://localhost:3000/journal/`, {
+        method: "GET",
+        headers: new Headers ({
+            "Content-Type": "application/json",
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            let display = document.getElementById('journals');
+            for(i = 0; i = display.childNodes.length; i++) {
+                display.removeChild(display.firstChild)
+            }
+            if (data.length === 0) {
+                let display = document.getElementById('journals');
+                let header = document.createElement('h5');
+
+                display.appendChild(header);
+                header.textContent = "You haven't made any posts yet!";
+                header.setAttribute("class", "noPosts")
+            } else {
+                for (i = 0; i < data.length; i++){
+                    let display = document.getElementById('journals');
+                    let card = document.getElementById('div');
+                    let body = document.getElementById('div');
+                    let header = document.getElementById('h5');
+                    let subtitle = document.getElementById('h6');
+                    let para = document.getElementById('p');
+                    
+                    let current = data[i];
+                    let title = current.title;
+                    let date = current.date;
+                    let entry = current.entry;
+
+                    header.textContent = title;
+                    subtitle.textContent = date;
+                    para.textContent = entry;
+
+                    display.appendChild(card);
+                    card.appendChild(body);
+                    body.appendChild(header);
+                    body.appendChild(subtitle);
+                    body.appendChild(para);
+
+                    card.setAttribute('id', current.id);
+                    card.setAttribute('class', 'card');
+                    card.setAttribute('class', 'card-body');
+                    card.setAttribute('class', 'card-title');
+                    card.setAttribute('class', 'card-subtitle mb-2 text-muted');
+                    card.setAttribute('class', 'card-text');
+                }
+            }
+        })
+        .catch(err => {
+            console.error(err)
+        })
     }
     
     
@@ -93,4 +151,64 @@ function displayMine() {
     ************************** */
     function displayByTitle() {
      console.log('displayByTitle Function Called')
+    let journalTitle = document.getElementById('searchBar').value;
+    console.log(journalTitle);
+    
+    fetch(`http://localhost:3000/journal/${journalTitle}`, {
+        method: "GET",
+        headers: new Headers ({
+            "Content-Type": "application/json",
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            let display = document.getElementById('journals');
+            for(i = 0; i = display.childNodes.length; i++) {
+                display.removeChild(display.firstChild)
+            }
+            if (data.length === 0) {
+                let display = document.getElementById('journals');
+                let header = document.createElement('h5');
+
+                display.appendChild(header);
+                header.textContent = "You haven't made any posts yet!";
+                header.setAttribute("class", "noPosts")
+            } else {
+                for (i = 0; i < data.length; i++){
+                    let display = document.getElementById('journals');
+                    let card = document.getElementById('div');
+                    let body = document.getElementById('div');
+                    let header = document.getElementById('h5');
+                    let subtitle = document.getElementById('h6');
+                    let para = document.getElementById('p');
+                    
+                    let current = data[i];
+                    let title = current.title;
+                    let date = current.date;
+                    let entry = current.entry;
+
+                    header.textContent = title;
+                    subtitle.textContent = date;
+                    para.textContent = entry;
+
+                    display.appendChild(card);
+                    card.appendChild(body);
+                    body.appendChild(header);
+                    body.appendChild(subtitle);
+                    body.appendChild(para);
+
+                    card.setAttribute('id', current.id);
+                    card.setAttribute('class', 'card');
+                    card.setAttribute('class', 'card-body');
+                    card.setAttribute('class', 'card-title');
+                    card.setAttribute('class', 'card-subtitle mb-2 text-muted');
+                    card.setAttribute('class', 'card-text');
+                }
+            }
+        })
+        .catch(err => {
+            console.error(err)
+        })
     }
