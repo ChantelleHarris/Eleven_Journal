@@ -16,7 +16,7 @@ function postJournal() {
         }
     }
 
-    fetch(`http://localhost:3010/journal/create`, {
+    fetch(`http://localhost:3000/journal/create`, {
         method: "POST",
         headers: new Headers ({
             "Content-Type": "application/json",
