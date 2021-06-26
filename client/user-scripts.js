@@ -16,7 +16,7 @@ function userSignUp() {
 
     console.log(`newUserData --> ${newUserData.user.email} ${newUserData.user.password}`);
 
-    fetch(`http://localhost:3010/user/register`, {
+    fetch(`http://localhost:3000/user/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -52,7 +52,7 @@ function userSignUp() {
     }
     console.log(userData)
 
-    fetch(`http://localhost:3010/user/login`, {
+    fetch(`http://localhost:3000/user/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
